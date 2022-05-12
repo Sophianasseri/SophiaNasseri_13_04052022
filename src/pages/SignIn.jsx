@@ -1,4 +1,4 @@
-import Form from '../components/Form/Form';
+import Form from '../components/Feature/Form';
 import Header from '../components/Header/Header';
 
 const SignIn = () => {
