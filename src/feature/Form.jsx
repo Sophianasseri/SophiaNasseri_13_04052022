@@ -1,17 +1,30 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../feature/userSlice';
 
 const Form = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isLoading, isAuth } = useSelector((state) => state.user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(login({ email, password }));
+    if (isAuth) {
+      navigate('/user');
+    }
   };
 
-  const onUsernameChanged = (e) => setUsername(e.target.value);
+  const onEmailChanged = (e) => setEmail(e.target.value);
   const onPasswordChanged = (e) => setPassword(e.target.value);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <section className="sign-in-content">
@@ -23,8 +36,8 @@ const Form = () => {
           <input
             type="text"
             id="username"
-            value={username}
-            onChange={onUsernameChanged}
+            value={email}
+            onChange={onEmailChanged}
           />
         </div>
         <div className="input-wrapper">

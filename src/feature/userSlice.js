@@ -3,36 +3,45 @@ import axios from 'axios';
 
 const initialState = {
   isAuth: false,
-  status: null,
+  isLoading: false,
   error: null,
 };
 
 const LOGIN_URL = 'localhost:3001/api/v1/user/login';
 
-export const login = createAsyncThunk('user/login', async () => {
-  try {
-    const response = await axios.post(LOGIN_URL);
-    return response.data;
-  } catch (err) {
-    return err.message;
-  }
-});
+export const login = createAsyncThunk(
+  'user/login',
+  async ({ email, password }) => {
+    try {
+      const response = await axios.post(LOGIN_URL, { email, password });
+      return response.data;
+    } catch (err) {
+      console.log('Error');
+    }
+  },
+);
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    [login.fulfilled]: (state) => {
-      state.status = 'succeeded';
+    loginPending: (state) => {
+      state.isLoading = true;
+    },
+    loginSucceeded: (state) => {
+      state.isLoading = false;
       state.isAuth = true;
+      state.error = '';
     },
-    [login.pending]: (state) => {
-      state.status = 'loading';
-    },
-    [login.rejected]: (state, action) => {
-      state.status = 'failed';
-      state.error = action.error.message;
+    loginRejected: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
     },
   },
 });
-export const userSelector = (state) => state.user;
+
+const { reducer, actions } = userSlice;
+
+export const { loginPending, loginSucceeded, loginRejected } = actions;
+
+export default reducer;
