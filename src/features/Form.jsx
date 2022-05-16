@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../feature/userSlice';
+import { login } from './userSlice';
 
 const Form = () => {
   const [email, setEmail] = useState('');
