@@ -14,13 +14,13 @@ const LOGIN_URL = 'http://localhost:3001/api/v1/user/login';
 
 export const login = createAsyncThunk(
   'user/login',
-  async ({ email, password }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await axios.post(LOGIN_URL, { email, password });
       console.log(response.data);
       return response.data;
     } catch (err) {
-      console.log('Error', err);
+      return rejectWithValue(err.response.data);
     }
   },
 );
@@ -31,17 +31,16 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(login.pending, (state) => {
+      .addCase(login.pending, (state, action) => {
         state.status = 'loading';
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.isAuth = 'true';
-        state.token = action.payload;
+        state.token = action.payload.body.token;
       })
       .addCase(login.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message;
       });
   },
 });

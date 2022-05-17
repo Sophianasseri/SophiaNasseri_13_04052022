@@ -14,17 +14,16 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
-    if (loginStatus === 'succeeded') {
-      navigate('/user');
-    }
   };
+
+  if (loginStatus === 'succeeded') {
+    navigate('/user');
+  } else if (loginStatus === 'loading') {
+    return <p>Loading...</p>;
+  }
 
   const onEmailChanged = (e) => setEmail(e.target.value);
   const onPasswordChanged = (e) => setPassword(e.target.value);
-
-  if (loginStatus === 'loading') {
-    return <p>Loading...</p>;
-  }
 
   return (
     <section className="sign-in-content">
