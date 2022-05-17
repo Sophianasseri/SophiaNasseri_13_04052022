@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   isAuth: false,
-  isLoading: false,
+  status: 'idle',
   error: null,
   firstName: null,
   lastName: null,
@@ -28,24 +28,22 @@ export const login = createAsyncThunk(
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    loginPending: (state) => {
-      state.isLoading = true;
-    },
-    loginSucceeded: (state) => {
-      state.isLoading = false;
-      state.isAuth = true;
-      state.error = '';
-      state.token = null;
-    },
-    loginRejected: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(login.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.isAuth = 'true';
+        state.token = action.payload;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
   },
 });
-
-export const { loginPending, loginSucceeded, loginRejected } =
-  userSlice.actions;
 
 export default userSlice.reducer;

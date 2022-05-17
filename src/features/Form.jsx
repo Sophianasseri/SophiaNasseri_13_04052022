@@ -9,12 +9,12 @@ const Form = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoading, isAuth } = useSelector((state) => state.user);
+  const loginStatus = useSelector((state) => state.user.status);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
-    if (isAuth) {
+    if (loginStatus === 'succeeded') {
       navigate('/user');
     }
   };
@@ -22,7 +22,7 @@ const Form = () => {
   const onEmailChanged = (e) => setEmail(e.target.value);
   const onPasswordChanged = (e) => setPassword(e.target.value);
 
-  if (isLoading) {
+  if (loginStatus === 'loading') {
     return <p>Loading...</p>;
   }
 
