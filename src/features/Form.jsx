@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from './userSlice';
@@ -11,21 +11,23 @@ const Form = () => {
   const navigate = useNavigate();
   const loginStatus = useSelector((state) => state.user.status);
 
+  useEffect(() => {
+    if (loginStatus === 'succeeded') {
+      navigate('/user');
+    }
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
   };
 
-  if (loginStatus === 'succeeded') {
-    navigate('/user');
-  } else if (loginStatus === 'loading') {
-    return <p>Loading...</p>;
-  }
-
   const onEmailChanged = (e) => setEmail(e.target.value);
   const onPasswordChanged = (e) => setPassword(e.target.value);
 
-  return (
+  return loginStatus === 'loading' ? (
+    <p>Loading...</p>
+  ) : (
     <section className="sign-in-content">
       <i className="fa fa-user-circle sign-in-icon"></i>
       <h1>Sign In</h1>
