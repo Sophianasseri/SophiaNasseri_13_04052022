@@ -1,7 +1,16 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Account from '../components/Account/Account';
 import Header from '../components/Header/Header';
+import { getUserProfile } from '../features/userSlice';
 
 const User = () => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.token);
+
+  useEffect(() => {
+    dispatch(getUserProfile({ token }));
+  }, [dispatch, token]);
   return (
     <>
       <Header />
