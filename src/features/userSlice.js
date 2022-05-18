@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 
 const initialState = {
   isAuth: false,
@@ -47,7 +46,9 @@ export const getUserProfile = createAsyncThunk(
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    logout: () => initialState,
+  },
   extraReducers(builder) {
     builder
       .addCase(login.pending, (state) => {
@@ -55,13 +56,14 @@ export const userSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.isAuth = 'true';
+
         state.token = action.payload.body.token;
       })
       .addCase(login.rejected, (state) => {
         state.status = 'failed';
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
+        state.isAuth = 'true';
         const { firstName, lastName } = action.payload.body;
         state.firstName = firstName;
         state.lastName = lastName;
