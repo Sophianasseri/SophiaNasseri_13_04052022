@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Account from '../components/Account/Account';
+import EditProfile from '../components/EditProfile/EditProfile';
 import Header from '../components/Header/Header';
 import { getUserProfile } from '../features/userSlice';
 
@@ -21,12 +22,7 @@ const User = () => {
       <Header />
       <main className="main bg-dark">
         <div className="header">
-          <h1>
-            Welcome back <br />
-            {firstName}&nbsp;
-            {lastName}!
-          </h1>
-          <button className="edit-button">Edit Name</button>
+          <EditProfile firstNameData={firstName} lastNameData={lastName} />
         </div>
         <h2 className="sr-only">Accounts</h2>
         <Account

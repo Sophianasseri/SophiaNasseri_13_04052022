@@ -43,6 +43,24 @@ export const getUserProfile = createAsyncThunk(
   },
 );
 
+export const editUserProfile = createAsyncThunk(
+  'user/editUserProfile',
+  async ({ token, firstName, lastName }, { rejectWithValue }) => {
+    try {
+      const response = await axios({
+        method: 'put',
+        url: PROFILE_URL,
+        headers: { Authorization: `Bearer ${token}` },
+        data: { firstName, lastName },
+      });
+      console.log(response.data);
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
+  },
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -64,6 +82,11 @@ export const userSlice = createSlice({
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
         state.isAuth = 'true';
+        const { firstName, lastName } = action.payload.body;
+        state.firstName = firstName;
+        state.lastName = lastName;
+      })
+      .addCase(editUserProfile.fulfilled, (state, action) => {
         const { firstName, lastName } = action.payload.body;
         state.firstName = firstName;
         state.lastName = lastName;
