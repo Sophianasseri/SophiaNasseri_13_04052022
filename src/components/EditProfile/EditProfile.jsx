@@ -24,19 +24,31 @@ const EditProfile = ({ firstNameData, lastNameData }) => {
     <form onSubmit={handleSubmit}>
       <h1>Welcome back</h1>
       <input
+        className="input-edit"
         type="text"
         placeholder={firstNameData}
         value={firstName || ''}
         onChange={onFirstNameChanged}
       />
       <input
+        className="input-edit"
         type="text"
         placeholder={lastNameData}
         value={lastName || ''}
         onChange={onLastNameChanged}
       />
-      <button type="submit">Save</button>
-      <button onClick={() => setIsEdit(!isEdit)}>Cancel</button>
+      <div className="btn-wrapper">
+        <button
+          className="edit-form"
+          type="submit"
+          disabled={!firstName || !lastName}
+        >
+          Save
+        </button>
+        <button className="edit-form" onClick={() => setIsEdit(!isEdit)}>
+          Cancel
+        </button>
+      </div>
     </form>
   ) : (
     <>
