@@ -1,14 +1,12 @@
 import Feature from '../components/Feature/Feature';
-import Header from '../components/Header/Header';
 import Hero from '../components/Hero/Hero';
-import iconChat from '../assets/img/icon-chat.png';
-import iconMoney from '../assets/img/icon-money.png';
-import iconSecurity from '../assets/img/icon-security.png';
+import iconChat from '../assets/icons/icon-chat.png';
+import iconMoney from '../assets/icons/icon-money.png';
+import iconSecurity from '../assets/icons/icon-security.png';
 
 const Home = () => {
   return (
     <>
-      <Header />
       <main>
         <Hero />
         <section className="features">

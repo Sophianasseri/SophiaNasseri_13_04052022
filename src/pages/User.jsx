@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Account from '../components/Account/Account';
 import EditProfile from '../components/EditProfile/EditProfile';
-import Header from '../components/Header/Header';
 import { getUserProfile } from '../features/userSlice';
 
 const User = () => {
@@ -21,7 +20,6 @@ const User = () => {
   });
   return (
     <>
-      <Header />
       <main className="main bg-dark">
         <div className="header">
           <EditProfile firstNameData={firstName} lastNameData={lastName} />

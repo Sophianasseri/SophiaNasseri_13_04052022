@@ -13,7 +13,7 @@ const PROFILE_URL = 'http://localhost:3001/api/v1/user/profile';
 
 export const login = createAsyncThunk(
   'user/login',
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, password, rejectWithValue }) => {
     try {
       const response = await axios.post(LOGIN_URL, { email, password });
       console.log(response.data);
@@ -26,7 +26,7 @@ export const login = createAsyncThunk(
 
 export const getUserProfile = createAsyncThunk(
   'user/getUserProfile',
-  async ({ token }, { rejectWithValue }) => {
+  async ({ token, rejectWithValue }) => {
     try {
       const response = await axios({
         method: 'post',
@@ -43,7 +43,7 @@ export const getUserProfile = createAsyncThunk(
 
 export const editUserProfile = createAsyncThunk(
   'user/editUserProfile',
-  async ({ token, firstName, lastName }, { rejectWithValue }) => {
+  async ({ token, firstName, lastName, rejectWithValue }) => {
     try {
       const response = await axios({
         method: 'put',
