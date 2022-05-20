@@ -76,6 +76,7 @@ body {
   width: 200px;
 }
 
+/* Home Page */
 .hero {
   background-image: url('./assets/img/bank-tree.jpeg');
   background-position: 0 -50px;
@@ -159,6 +160,7 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* Sign-in Page */
 .sign-in-button {
   display: block;
   width: 100%;
@@ -223,6 +225,7 @@ body {
   margin-top: 5px;
 }
 
+/* Footer */
 .footer {
   display: flex;
   justify-content: center;
@@ -235,6 +238,7 @@ body {
   padding: 0;
 }
 
+/* Account Page */
 .account {
   display: flex;
   justify-content: space-between;
@@ -272,6 +276,7 @@ body {
   flex: 1;
 }
 
+/* Edit Form */
 .edit-button {
   border-color: #00bc77;
   background-color: #00bc77;
@@ -322,5 +327,28 @@ button:disabled {
 
   .transaction-button {
     width: 200px;
+  }
+}
+
+/* Spinner */
+.spinner {
+  position: fixed;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: conic-gradient(#0000 10%, #00bc77);
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
+  animation: spinner 1s infinite linear;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(1turn);
   }
 }

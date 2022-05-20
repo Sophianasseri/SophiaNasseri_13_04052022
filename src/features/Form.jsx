@@ -32,7 +32,9 @@ const Form = () => {
   const onPasswordChanged = (e) => setPassword(e.target.value);
 
   return loginStatus === 'loading' ? (
-    <p>Loading...</p>
+    <div className="spinner-wrapper">
+      <div className="spinner" />
+    </div>
   ) : (
     <section className="sign-in-content">
       <i className="fa fa-user-circle sign-in-icon"></i>
