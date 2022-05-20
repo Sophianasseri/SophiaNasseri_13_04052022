@@ -17,6 +17,12 @@ const Form = () => {
     }
   });
 
+  const ErrorMsg = () => {
+    if (loginStatus === 'failed') {
+      return <p className="sign-in-err">Invalid Email or Password !</p>;
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
@@ -35,10 +41,11 @@ const Form = () => {
         <div className="input-wrapper">
           <label htmlFor="username">Username</label>
           <input
-            type="text"
+            type="email"
             id="username"
             value={email}
             onChange={onEmailChanged}
+            required
           />
         </div>
         <div className="input-wrapper">
@@ -48,6 +55,7 @@ const Form = () => {
             id="password"
             value={password}
             onChange={onPasswordChanged}
+            required
           />
         </div>
         <div className="input-remember">
@@ -55,6 +63,7 @@ const Form = () => {
           <label htmlFor="remember-me">Remember me</label>
         </div>
         <button className="sign-in-button">Sign In</button>
+        <ErrorMsg />
       </form>
     </section>
   );

@@ -184,6 +184,10 @@ body {
   font-size: 5rem;
 }
 
+.sign-in-err {
+  color: red;
+}
+
 .input-remember {
   display: flex;
 }
@@ -284,6 +288,10 @@ body {
   width: 100px;
   margin: 0 5px;
   font-weight: bold;
+}
+
+button:disabled {
+  opacity: 0.5;
 }
 
 .header {
