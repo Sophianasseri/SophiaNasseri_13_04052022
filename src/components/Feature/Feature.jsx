@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Feature = ({ imgSrc, alt, title, content }) => {
   return (
     <div className="feature-item">
@@ -8,3 +10,10 @@ const Feature = ({ imgSrc, alt, title, content }) => {
   );
 };
 export default Feature;
+
+Feature.propTypes = {
+  imgSrc: PropTypes.string,
+  alt: PropTypes.string,
+  title: PropTypes.string,
+  content: PropTypes.string,
+};

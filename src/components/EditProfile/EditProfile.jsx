@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editUserProfile } from '../../features/userSlice';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const EditProfile = ({ firstNameData, lastNameData }) => {
   const [firstName, setFirstName] = useState();
@@ -65,3 +66,8 @@ const EditProfile = ({ firstNameData, lastNameData }) => {
 };
 
 export default EditProfile;
+
+EditProfile.propTypes = {
+  firstNameData: PropTypes.string,
+  lastNameData: PropTypes.string,
+};
