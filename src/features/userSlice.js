@@ -2,9 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  isAuth: false,
   status: 'idle',
-  error: null,
   firstName: null,
   lastName: null,
   token: null,
@@ -74,14 +72,12 @@ export const userSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
-
         state.token = action.payload.body.token;
       })
       .addCase(login.rejected, (state) => {
         state.status = 'failed';
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
-        state.isAuth = 'true';
         const { firstName, lastName } = action.payload.body;
         state.firstName = firstName;
         state.lastName = lastName;

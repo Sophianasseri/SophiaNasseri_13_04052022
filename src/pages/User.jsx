@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Account from '../components/Account/Account';
 import EditProfile from '../components/EditProfile/EditProfile';
 import Header from '../components/Header/Header';
@@ -8,15 +9,16 @@ import { getUserProfile } from '../features/userSlice';
 const User = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
-  const isAuth = useSelector((state) => state.user.isAuth);
   const { firstName, lastName } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuth) {
+    if (!firstName) {
       dispatch(getUserProfile({ token }));
+    } else if (!token) {
+      return navigate('/sign-in');
     }
-  }, [dispatch, token, isAuth]);
-
+  });
   return (
     <>
       <Header />
