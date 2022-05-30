@@ -1,21 +1,24 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Account from '../components/Account/Account';
 import EditProfile from '../components/EditProfile/EditProfile';
 import { getUserProfile } from '../features/userSlice';
 
+/**
+ * Component for rendering user profile page
+ *
+ * @component
+ */
 const User = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
   const { firstName, lastName } = useSelector((state) => state.user);
-  const navigate = useNavigate();
 
+  /* Check if we already received data to avoid
+  multiple API calls every time the page is rendered*/
   useEffect(() => {
     if (!firstName) {
       dispatch(getUserProfile({ token }));
-    } else if (!token) {
-      return navigate('/sign-in');
     }
   });
   return (

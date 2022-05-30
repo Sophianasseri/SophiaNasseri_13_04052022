@@ -1,3 +1,8 @@
+/**
+ * Component for rendering home page hero
+ *
+ * @component
+ */
 const Hero = () => {
   return (
     <div className="hero">

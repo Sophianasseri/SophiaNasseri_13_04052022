@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../features/userSlice';
 
+/**
+ * Component for rendering signin form
+ *
+ * @component
+ */
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,6 +22,11 @@ const SignInForm = () => {
     }
   });
 
+  /**
+   * Component for rendering error message if form is invalid
+   *
+   * @component
+   */
   const ErrorMsg = () => {
     if (loginStatus === 'failed') {
       return <p className="sign-in-err">Invalid Email or Password !</p>;
@@ -28,6 +38,7 @@ const SignInForm = () => {
     dispatch(login({ email, password }));
   };
 
+  // Get form values
   const onEmailChanged = (e) => setEmail(e.target.value);
   const onPasswordChanged = (e) => setPassword(e.target.value);
 

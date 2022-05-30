@@ -4,6 +4,17 @@ import { editUserProfile } from '../../features/userSlice';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
+/**
+ * Component for rendering edit profile form
+ *
+ * @component
+ * @example
+ * const firstNameData = 'John'
+ * const lastNameData = 'Doe
+ * return (
+ *  <EditProfile firstNameData={firstNameData} lastNameData={lastNameData} />
+ * )
+ */
 const EditProfile = ({ firstNameData, lastNameData }) => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -18,6 +29,7 @@ const EditProfile = ({ firstNameData, lastNameData }) => {
     setIsEdit(!isEdit);
   };
 
+  //Get input values
   const onFirstNameChanged = (e) => setFirstName(e.target.value);
   const onLastNameChanged = (e) => setLastName(e.target.value);
 
@@ -68,6 +80,12 @@ const EditProfile = ({ firstNameData, lastNameData }) => {
 export default EditProfile;
 
 EditProfile.propTypes = {
+  /**
+   * User first name
+   */
   firstNameData: PropTypes.string,
+  /**
+   * User last name
+   */
   lastNameData: PropTypes.string,
 };

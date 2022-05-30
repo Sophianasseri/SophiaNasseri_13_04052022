@@ -1,13 +1,22 @@
 import { Link } from 'react-router-dom';
 import argentBankLogo from '../../assets/img/argentBankLogo.png';
 import { useDispatch, useSelector } from 'react-redux';
-
+/**
+ * Component for rendering app header
+ *
+ * @component
+ */
 const Header = () => {
   const loginStatus = useSelector((state) => state.user.status);
   const { firstName } = useSelector((state) => state.user);
   const logout = useSelector((state) => state.user.logout);
   const dispatch = useDispatch();
 
+  /**
+   * Component for rendering app header content
+   *
+   * @component
+   */
   const HeaderContent = () => {
     return loginStatus === 'succeeded' ? (
       <div>

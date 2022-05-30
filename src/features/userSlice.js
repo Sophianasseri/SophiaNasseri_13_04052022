@@ -7,7 +7,7 @@ const initialState = {
   lastName: null,
   token: null,
 };
-
+// API end points
 const LOGIN_URL = 'http://localhost:3001/api/v1/user/login';
 const PROFILE_URL = 'http://localhost:3001/api/v1/user/profile';
 

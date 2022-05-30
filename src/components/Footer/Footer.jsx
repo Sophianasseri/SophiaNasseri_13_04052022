@@ -1,3 +1,8 @@
+/**
+ * Component for rendering app footer
+ *
+ * @component
+ */
 const Footer = () => {
   return (
     <footer className="footer">

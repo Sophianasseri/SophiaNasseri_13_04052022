@@ -4,6 +4,11 @@ import iconChat from '../assets/icons/icon-chat.png';
 import iconMoney from '../assets/icons/icon-money.png';
 import iconSecurity from '../assets/icons/icon-security.png';
 
+/**
+ * Component for rendering home page
+ *
+ * @component
+ */
 const Home = () => {
   return (
     <>
